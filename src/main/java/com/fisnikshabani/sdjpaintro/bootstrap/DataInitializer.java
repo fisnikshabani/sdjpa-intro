@@ -21,10 +21,10 @@ public class DataInitializer implements CommandLineRunner {
 
         bookRepository.deleteAll(); //delete all records and initialize again!
 
-        Book book1 = new Book("Domain Driven Desing", "123", "RandomHouse");
+        Book book1 = new Book("Domain Driven Desing", "123", "RandomHouse", null);
         bookRepository.save(book1);
 
-        Book book2 = new Book("Spring In Action", "456", "RandomHouse2");
+        Book book2 = new Book("Spring In Action", "456", "RandomHouse2", null);
         bookRepository.save(book2);
 
         bookRepository.findAll().forEach(book -> {

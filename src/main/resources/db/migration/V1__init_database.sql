@@ -1,4 +1,4 @@
-drop table if exists  book;
+drop table if exists book;
 drop table if exists hibernate_sequence;
 
 create table book (
@@ -7,10 +7,10 @@ create table book (
                       publisher varchar(255),
                       title varchar(255),
                       primary key (id)
-) engine=InnoDB
+) engine=InnoDB;
 
 create table hibernate_sequence (
     next_val bigint
-) engine=InnoDB
+) engine=InnoDB;
 
-insert into hibernate_sequence values ( 1 )
+insert into hibernate_sequence values ( 1 );

@@ -1,10 +1,10 @@
-drop database if exists bookdb;
-drop user if exists 'bookadmin'@'%';
-drop user if exists 'bookuser'@'%';
-create database if not exists bookdb character set utf8mb4 collate utf8mb4_unicode_ci;
-create user if not exists 'bookadmin'@'%' identified with mysql_native_password by 'password';
-grant select, insert, update, delete, create, drop, references, index, alter, execute, create view, show view,
-create routine, alter routine, event, trigger on bookdb.* to 'bookadmin'@'%';
-create user if not exists 'bookuser'@'%' identified with mysql_native_password by 'password';
-grant select, insert, update, delete, show view on bookdb.* to 'bookuser'@'%';
-flush privileges;
+DROP DATABASE IF EXISTS bookdb;
+DROP USER IF EXISTS `bookadmin`@`%`;
+DROP USER IF EXISTS `bookuser`@`%`;
+CREATE DATABASE IF NOT EXISTS bookdb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER IF NOT EXISTS `bookadmin`@`%` IDENTIFIED WITH mysql_native_password BY 'password';
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, EXECUTE, CREATE VIEW, SHOW VIEW,
+CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER ON `bookdb`.* TO `bookadmin`@`%`;
+CREATE USER IF NOT EXISTS `bookuser`@`%` IDENTIFIED WITH mysql_native_password BY 'password';
+GRANT SELECT, INSERT, UPDATE, DELETE, SHOW VIEW ON `bookdb`.* TO `bookuser`@`%`;
+FLUSH PRIVILEGES;
