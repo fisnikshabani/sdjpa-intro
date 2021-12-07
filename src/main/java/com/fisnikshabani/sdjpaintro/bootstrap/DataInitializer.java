@@ -1,6 +1,8 @@
 package com.fisnikshabani.sdjpaintro.bootstrap;
 
+import com.fisnikshabani.sdjpaintro.domain.AuthorUuid;
 import com.fisnikshabani.sdjpaintro.domain.Book;
+import com.fisnikshabani.sdjpaintro.repositories.AuthorUuidRepository;
 import com.fisnikshabani.sdjpaintro.repositories.BookRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
@@ -11,9 +13,11 @@ import org.springframework.stereotype.Component;
 public class DataInitializer implements CommandLineRunner {
 
     private final BookRepository bookRepository;
+    private final AuthorUuidRepository authorUuidRepository;
 
-    public DataInitializer(BookRepository bookRepository) {
+    public DataInitializer(BookRepository bookRepository, AuthorUuidRepository authorUuidRepository) {
         this.bookRepository = bookRepository;
+        this.authorUuidRepository = authorUuidRepository;
     }
 
     @Override
@@ -31,6 +35,12 @@ public class DataInitializer implements CommandLineRunner {
             System.out.println("Book id: " + book.getId());
             System.out.println("Book title: " + book.getTitle());
         });
+
+        AuthorUuid authorUuid = new AuthorUuid();
+        authorUuid.setFirstName("Joe");
+        authorUuid.setLastName("Buck");
+        AuthorUuid savedAuthor = authorUuidRepository.save(authorUuid);
+        System.out.printf("Saved Author UUID: " + savedAuthor.getId());
 
     }
 }
