@@ -32,6 +32,22 @@ public class MySQLIntegrationTest {
     @Autowired
     AuthorCompositeRepository authorCompositeRepository;
 
+    @Autowired
+    AuthorEmbeddedRepository authorEmbeddedRepository;
+
+    @Test
+    void authorEmbeddedTest() {
+        NameId nameId = new NameId("Fisnik", "Sh");
+        AuthorEmbedded authorEmbedded = new AuthorEmbedded(nameId);
+
+        AuthorEmbedded saved = authorEmbeddedRepository.save(authorEmbedded);
+        assertThat(saved).isNotNull();
+
+        AuthorEmbedded fetched = authorEmbeddedRepository.getById(nameId);
+        assertThat(fetched).isNotNull();
+
+    }
+
     @Test
     void authorCompositeTest() {
         NameId nameId = new NameId("Fisnik", "Sh");

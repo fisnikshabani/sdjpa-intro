@@ -1,7 +1,9 @@
 package com.fisnikshabani.sdjpaintro.domain;
 
+import javax.persistence.Embeddable;
 import java.io.Serializable;
 
+@Embeddable
 public class NameId implements Serializable {
 
     private String firstName;
