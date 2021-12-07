@@ -1,12 +1,7 @@
 package com.fisnikshabani.sdjpaintro;
 
-import com.fisnikshabani.sdjpaintro.domain.AuthorUuid;
-import com.fisnikshabani.sdjpaintro.domain.BookNatural;
-import com.fisnikshabani.sdjpaintro.domain.BookUuid;
-import com.fisnikshabani.sdjpaintro.repositories.AuthorUuidRepository;
-import com.fisnikshabani.sdjpaintro.repositories.BookNaturalRepository;
-import com.fisnikshabani.sdjpaintro.repositories.BookRepository;
-import com.fisnikshabani.sdjpaintro.repositories.BookUuidRepository;
+import com.fisnikshabani.sdjpaintro.domain.*;
+import com.fisnikshabani.sdjpaintro.repositories.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -33,6 +28,25 @@ public class MySQLIntegrationTest {
 
     @Autowired
     BookNaturalRepository bookNaturalRepository;
+
+    @Autowired
+    AuthorCompositeRepository authorCompositeRepository;
+
+    @Test
+    void authorCompositeTest() {
+        NameId nameId = new NameId("Fisnik", "Sh");
+        AuthorComposite authorComposite = new AuthorComposite();
+        authorComposite.setFirstName(nameId.getFirstName());
+        authorComposite.setLastName(nameId.getLastName());
+        authorComposite.setCountry("NMK");
+
+        AuthorComposite saved = authorCompositeRepository.save(authorComposite);
+        assertThat(saved).isNotNull();
+
+        AuthorComposite fetched = authorCompositeRepository.getById(nameId);
+        assertThat(fetched).isNotNull();
+
+    }
 
     @Test
     void bookNaturalTest() {
